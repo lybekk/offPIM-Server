@@ -1,3 +1,12 @@
+# PouchDB running artifacts
+pouch__all_dbs__/
+_replicator/
+_users/
+# Given that the database name created is named vault
+vault/
+config.json
+log.txt
+
 # Logs
 logs
 *.log

@@ -1,0 +1,31 @@
+{
+  "name": "offpim-server",
+  "version": "1.0.0",
+  "description": "offPIM Server for synchronization",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lybekk/offPIM-Server.git"
+  },
+  "keywords": [
+    "offpim",
+    "pouchdb",
+    "couchdb",
+    "pim",
+    "sync"
+  ],
+  "author": "Christoffer Lybekk",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lybekk/offPIM-Server/issues"
+  },
+  "homepage": "https://github.com/lybekk/offPIM-Server#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-pouchdb": "^4.2.0",
+    "pouchdb": "^7.2.1"
+  }
+}

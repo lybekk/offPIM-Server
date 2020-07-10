@@ -1,0 +1,20 @@
+<h1>offPIM Server</h1>
+<p>Oi</p>
+<ul>
+    <li>
+        <a id="dbLink" href="http://localhost:3000" target="_blank">db</a>
+    </li>
+    <li>
+        <a id="dbLinkAdmin" href="http://localhost:3000/_utils/" target="_blank">Admin</a>
+    </li>
+</ul>
+
+<script>
+    let {
+        hostname,
+        protocol
+    } = location;
+    let dbUrl = `${protocol + '//' + hostname}:3000`;
+    document.getElementById('dbLink').href = dbUrl;
+    document.getElementById('dbLinkAdmin').href = dbUrl + '/_utils';
+</script>
