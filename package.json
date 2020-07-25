@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/lybekk/offPIM-Server#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "express-pouchdb": "^4.2.0",
     "pouchdb": "^7.2.1"
