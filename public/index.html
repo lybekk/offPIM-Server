@@ -109,6 +109,10 @@
                         this.dbAvailable = true;
                         const box2 = document.querySelector('#dbServerStatusBox');
                         box2.innerHTML = this.dbAvailable ? 'Online' : 'Offline';
+
+                        let u = this.url;
+                        document.querySelector('#dbLink').href = u;
+                        document.querySelector('#dbLinkAdmin').href = u + '/_utils';
                     })
                     .catch((error) => {
                         this.dbAvailable = false;
@@ -128,14 +132,13 @@
             DatabaseServer.statusCheck()
         }
 
-
         function setTerminalBox(message) {
             let box = document.querySelector('#terminalBox');
             box.innerText = message;
         }
 
-        document.querySelector('#dbLink').href = DatabaseServer.url;
-        document.querySelector('#dbLinkAdmin').href = DatabaseServer.url + '/_utils';
+        //document.querySelector('#dbLink').href = DatabaseServer.url;
+        //document.querySelector('#dbLinkAdmin').href = DatabaseServer.url + '/_utils';
 
         setInterval(() => {
             DatabaseServer.statusCheck()
