@@ -1,20 +1,150 @@
-<h1>offPIM Server</h1>
-<p>Oi</p>
-<ul>
-    <li>
-        <a id="dbLink" href="http://localhost:3000" target="_blank">db</a>
-    </li>
-    <li>
-        <a id="dbLinkAdmin" href="http://localhost:3000/_utils/" target="_blank">Admin</a>
-    </li>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
 
-<script>
-    let {
-        hostname,
-        protocol
-    } = location;
-    let dbUrl = `${protocol + '//' + hostname}:3000`;
-    document.getElementById('dbLink').href = dbUrl;
-    document.getElementById('dbLinkAdmin').href = dbUrl + '/_utils';
-</script>
+<head>
+    <meta charset="utf-8">
+    <title>offPIM Server</title>
+    <link href="offpim.css" rel="stylesheet" type="text/css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="manifest" href="site.webmanifest">
+</head>
+
+<body>
+    <h1>offPIM Server</h1>
+    <p>Oi!</p>
+    <div class="grid-container">
+        <section>
+            <h2>Status</h2>
+            <p id="dbServerStatusBox">Checking Database Server Status...</p>
+            <p id="bindResultBox"></p>
+        </section>
+        <section>
+            <h2>Links</h2>
+            <ul>
+                <li>
+                    <a id="dbLink" href="http://localhost:3000" target="_blank">DB root (/)</a>
+                </li>
+                <li>
+                    <a id="dbLinkAdmin" href="http://localhost:3000/_utils/" target="_blank">DB Admin (Fauxton)</a>
+                </li>
+            </ul>
+        </section>
+        <section>
+            <h2>DB Server actions</h2>
+            <button onclick="DatabaseServer.restart()">Restart</button>
+            <button onclick="DatabaseServer.shutdown()">Shutdown</button>
+            <button onclick="DatabaseServer.start()">Start</button>
+        </section>
+        <section>
+            <h2>Info</h2>
+            <div>
+                <pre id="terminalBox"></pre>
+            </div>
+        </section>
+    </div>
+    <p>This window may be closed. The Server process will still run</p>
+    <!-- TODO: change values in settings.json in offPIM .env
+    <button>Set bind address to 0.0.0.0</button>
+    <button>Set bind address to 127.0.0.1</button>
+-->
+
+    <script>
+        var {
+            hostname,
+            protocol
+        } = location;
+
+        let DatabaseServer = class dbServer {
+            constructor() {
+                this.name = 'PouchDB Express server';
+                this.url = `${protocol + '//' + hostname}:3000`;
+                this.bindAddress = null;
+                this.dbAvailable = false;
+            }
+
+            get networkAvailability() {
+                return this.checkNetworkAvailability()
+            }
+
+            checkNetworkAvailability() {
+                return ['127.0.0.1', 'localhost'].includes(this.bindAddress)
+            }
+
+            static async start() {
+                dbAction({
+                    msg: `${this.name} starting.`,
+                    url: '/action/start',
+                })
+            }
+
+            static async shutdown() {
+                dbAction({
+                    msg: `Shutting down ${this.name}`,
+                    url: '/action/shutdown',
+                })
+            }
+
+            static async restart() {
+                dbAction({
+                    msg: `Restarting ${this.name}`,
+                    url: '/action/restart',
+                })
+            }
+
+            static statusCheck() {
+                const box = document.querySelector('#bindResultBox');
+                fetch('/config')
+                    .then(response => response.json())
+                    .then(data => {
+                        this.url = data.dbServerURL;
+                        this.bindAddress = data.bindAddress;
+
+                        if (this.networkAvailability) {
+                            box.innerHTML = 'offPIM Server is available on all ports';
+                        } else {
+                            box.innerHTML = 'Secure environment. offPIM Server is available on localhost only';
+                        }
+                        this.dbAvailable = true;
+                        const box2 = document.querySelector('#dbServerStatusBox');
+                        box2.innerHTML = this.dbAvailable ? 'Online' : 'Offline';
+                    })
+                    .catch((error) => {
+                        this.dbAvailable = false;
+                        let txt = 'offPIM Server reported an error: ' + error;
+                        console.log(txt)
+                        setTerminalBox(txt)
+                        box.innerHTML = txt;
+                    })
+            }
+
+        }
+
+        async function dbAction(obj) {
+            setTerminalBox(obj.msg)
+            let response = await fetch(obj.url);
+            setTerminalBox(JSON.stringify(await response.json(), null, 2))
+            DatabaseServer.statusCheck()
+        }
+
+
+        function setTerminalBox(message) {
+            let box = document.querySelector('#terminalBox');
+            box.innerText = message;
+        }
+
+        document.querySelector('#dbLink').href = DatabaseServer.url;
+        document.querySelector('#dbLinkAdmin').href = DatabaseServer.url + '/_utils';
+
+        setInterval(() => {
+            DatabaseServer.statusCheck()
+        }, 10000);
+        // TODO: list DB's in interface
+        //http://localhost:3000/_all_dbs
+
+        DatabaseServer.statusCheck()
+    </script>
+</body>
+
+</html>
