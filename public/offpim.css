@@ -1,59 +1,60 @@
 :root {
-    --primary-bg-color: #004444;
-    --primary-txt-color: lightcyan;
-    --secondary-bg-color: darkcyan;
-    --secondary-txt-color: cyan;
-    --shadow-main: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
+  --primary-bg-color: #004444;
+  --primary-txt-color: lightcyan;
+  --secondary-bg-color: darkcyan;
+  --secondary-txt-color: cyan;
+  --shadow-main: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
 }
 
 * {
-  box-sizing: border-box;
+box-sizing: border-box;
 }
 
 body {
-    font-family: sans-serif;
-    background-color: var(--primary-bg-color);
-    color: lightcyan;
-    font-weight: bolder;
+  font-family: sans-serif;
+  background-color: var(--primary-bg-color);
+  color: lightcyan;
+  font-weight: bolder;
 }
 
 a {
-    color: var(--secondary-bg-color);
-    background-color: var(--primary-txt-color);
-    text-decoration-line: none;
-    text-shadow: 1px 1px #00e6e6;
-    padding: .1rem;
-    border-radius: .2rem;
-    opacity: .9;
+  color: var(--secondary-bg-color);
+  background-color: var(--primary-txt-color);
+  text-decoration-line: none;
+  text-shadow: 1px 1px #00e6e6;
+  padding: .1rem;
+  border-radius: .2rem;
+  opacity: .9;
 }
 
 section {
-    background-color: var(--secondary-bg-color);
-    box-shadow: var(--shadow-main);
-    padding-left: 1rem;
-    border-radius: .2rem;
+  background-color: var(--secondary-bg-color);
+  box-shadow: var(--shadow-main);
+  padding-left: 1rem;
+  border-radius: .2rem;
+  padding-bottom: 2vh;
 }
 
 button {
-    color: var(--secondary-bg-color);
-    box-shadow: var(--shadow-main);
-    background-color: var(--primary-txt-color);
-    border: none;
-    font-size: large;
-    padding: .4rem;
-    border-radius: .2rem;
+  color: var(--secondary-bg-color);
+  box-shadow: var(--shadow-main);
+  background-color: var(--primary-txt-color);
+  border: none;
+  font-size: large;
+  padding: .4rem;
+  border-radius: .2rem;
 }
 
 ul {
-  list-style-type: circle;
+list-style-type: circle;
 }
 
 ul li {
-  margin: .3rem;
+margin: .3rem;
 }
 
 .grid-container {
-    display: grid;
-    grid-gap: 1.4vw;
-    grid-template-columns: repeat(auto-fill, 35vh);
+  display: grid;
+  grid-gap: 1.4vw;
+  grid-template-columns: repeat(auto-fill, 35vh);
 }
