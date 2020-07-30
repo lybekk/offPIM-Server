@@ -4,6 +4,7 @@ offpim/
 pouch__all_dbs__/
 _replicator/
 _users/
+*mrview*/
 # Given that the database name created is named vault
 vault/
 config.json
