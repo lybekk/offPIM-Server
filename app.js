@@ -5,6 +5,7 @@ var cors = require('cors');
 var express = require('express');
 const path = require('path');
 const open = require('open');
+const offPIMServerConfig = require('./config.json')
 
 /*
  * Settings
@@ -20,6 +21,12 @@ const appURLBase = 'http://localhost:';
  * dbServer
  */
 var app = express();
+const corsOrigins = offPIMServerConfig.cors.origins.split(",");
+app.use(cors({
+    origin: corsOrigins,
+    credentials: true,
+}));
+
 app.use('/', require('express-pouchdb')(PouchDB));
 var dbServer,
     dbServerURL;
