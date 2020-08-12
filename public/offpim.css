@@ -1,3 +1,4 @@
+/*
 :root {
   --primary-bg-color: #004444;
   --primary-txt-color: lightcyan;
@@ -5,11 +6,30 @@
   --secondary-txt-color: cyan;
   --shadow-main: 0px 2px 1px -1px rgba(0, 0, 0, 0.2), 0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0,0,0,.12);
 }
+*/
 
 * {
 box-sizing: border-box;
 }
 
+.my-card-content {
+  padding: 16px;
+}
+
+a {
+  /*
+  color: var(--secondary-bg-color);
+  background-color: var(--primary-txt-color);
+  text-shadow: 1px 1px #00e6e6;
+  padding: .1rem;
+  border-radius: .2rem;
+  opacity: .9;
+  */
+  color: inherit;
+  text-decoration-line: none;
+}
+
+/*
 body {
   font-family: sans-serif;
   background-color: var(--primary-bg-color);
@@ -17,15 +37,7 @@ body {
   font-weight: bolder;
 }
 
-a {
-  color: var(--secondary-bg-color);
-  background-color: var(--primary-txt-color);
-  text-decoration-line: none;
-  text-shadow: 1px 1px #00e6e6;
-  padding: .1rem;
-  border-radius: .2rem;
-  opacity: .9;
-}
+
 
 section {
   background-color: var(--secondary-bg-color);
@@ -58,3 +70,4 @@ margin: .3rem;
   grid-gap: 1.4vw;
   grid-template-columns: repeat(auto-fill, 35vh);
 }
+*/

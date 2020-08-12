@@ -5,47 +5,103 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>offPIM Server</title>
-    <link href="offpim.css" rel="stylesheet" type="text/css" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
     <link rel="manifest" href="site.webmanifest">
+    <link href="offpim.css" rel="stylesheet">
+    <!-- Material Components for web -->
+    <link href="bundle.css" rel="stylesheet">
+    <!-- ICONS
+        <link rel="stylesheet"
+        href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    -->
+    <!--
+        Roboto / Material Components Font
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+    -->
+
 </head>
 
-<body>
-    <h1>offPIM Server</h1>
-    <p>Oi!</p>
-    <div class="grid-container">
-        <section>
-            <h2>Status</h2>
-            <p id="dbServerStatusBox">Checking Database Server Status...</p>
-            <p id="bindResultBox"></p>
-        </section>
-        <section>
-            <h2>Links</h2>
-            <ul>
-                <li>
-                    <a id="dbLink" href="http://localhost:3000" target="_blank">DB root (/)</a>
-                </li>
-                <li>
-                    <a id="dbLinkAdmin" href="http://localhost:3000/_utils/" target="_blank">DB Admin (Fauxton)</a>
-                </li>
-            </ul>
-        </section>
-        <section>
-            <h2>DB Server actions</h2>
-            <button onclick="DatabaseServer.restart()">Restart</button>
-            <button onclick="DatabaseServer.shutdown()">Shutdown</button>
-            <button onclick="DatabaseServer.start()">Start</button>
-        </section>
-        <section>
+<body class="mdc-typography">
+
+    <header class="mdc-top-app-bar mdc-top-app-bar--short">
+        <div class="mdc-top-app-bar__row">
+            <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+                <span class="mdc-top-app-bar__title">
+                <h1>offPIM <span>Server</span></h1>
+                </span>
+            </section>
+        </div>
+    </header>
+
+    <div class="mdc-layout-grid" style="margin-top:5vh;">
+        <div class="mdc-layout-grid__inner">
+
+            <div class="mdc-layout-grid__cell">
+                <div class="mdc-card">
+                    <div class="my-card-content">
+                        <h2>Status</h2>
+                        <p id="dbServerStatusBox">Checking Database Server Status...</p>
+                        <p id="bindResultBox"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdc-layout-grid__cell">
+                <div class="mdc-card">
+                    <div class="my-card-content">
+                        <h2>Links</h2>
+                        <ul id="linklist" class="mdc-list">
+                            <li class="mdc-list-item">
+                                <a id="dbLink" href="http://localhost:3000" target="_blank">
+                                    <span class="mdc-list-item__text">
+                                        <span class="mdc-list-item__primary-text">DB root (/)</span>
+                                        <span class="mdc-list-item__secondary-text">PouchDB Server</span>
+                                    </span>
+                                </a>
+                            </li>
+
+                            <li class="mdc-list-item">
+                                <a id="dbLinkAdmin" href="http://localhost:3000/_utils/" target="_blank">
+                                    <span class="mdc-list-item__text">
+                                        <span class="mdc-list-item__primary-text">DB Admin</span>
+                                        <span class="mdc-list-item__secondary-text">Fauxton</span>
+                                    </span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mdc-layout-grid__cell">
+                <div class="mdc-card">
+                    <div class="my-card-content">
+                        <h2>DB Server actions</h2>
+                        <button onclick="DatabaseServer.restart()">Restart</button>
+                        <button onclick="DatabaseServer.shutdown()">Shutdown</button>
+                        <button onclick="DatabaseServer.start()">Start</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="mdc-card mdc-card--outlined">
+        <div class="my-card-content">
             <h2>Info</h2>
             <div>
                 <pre id="terminalBox"></pre>
             </div>
-        </section>
+        </div>
     </div>
-    <p>This window may be closed. The Server process will still run</p>
+
+    <footer>
+        <p>This window may be closed. The Server process will still run</p>
+    </footer>
+
     <!-- TODO: change values in settings.json in offPIM .env
     <button>Set bind address to 0.0.0.0</button>
     <button>Set bind address to 127.0.0.1</button>
@@ -149,6 +205,9 @@
 
         DatabaseServer.statusCheck()
     </script>
-</body>
+    <!-- Material Components for web -->
+    <script src="bundle.js"></script>
+
+    </body>
 
 </html>
