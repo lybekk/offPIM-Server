@@ -3,9 +3,9 @@
     "enable_cors": true
   },
   "cors": {
-    "origins": "https://offpim.app",
+    "origins": "https://offpim.app,http://localhost:8080,http://localhost:3000,http://localhost:3001",
     "credentials": true,
     "headers": "accept, authorization, content-type, origin, referer",
-    "methods": "GET, PUT, POST, HEAD, DELETE"
+    "methods": "GET, PUT, POST, HEAD, DELETE, OPTIONS"
   }
 }

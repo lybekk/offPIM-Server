@@ -8,3 +8,7 @@ offPIM Server for easy Synchronization
     * Restart offPIM-server after adding a new URL.
 * offPIM Server struggles with **Microsoft Edge Legacy** during replication.
     * Verified working with Brave or Chrome (Webkit in general)
+
+## JS+CSS Bundle
+Bundler found here:
+[offPIM-mdc-theme-bundler](https://github.com/lybekk/material-web-components)

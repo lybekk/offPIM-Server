@@ -54,6 +54,10 @@ console.log(`PouchDB Server is available on ${dbServerURL}`,
  */
 
 var appUI = express();
+appUI.use(cors({
+    origin: corsOrigins,
+    credentials: true,
+}));
 
 appUI.get('/', function(req, res) {
     res.redirect('/static');
