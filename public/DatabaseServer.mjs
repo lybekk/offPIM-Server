@@ -12,7 +12,10 @@ var {
             }
 
             get activeDatabase() {
-                return localStorage.getItem('activeDatabase')
+                const name = localStorage.getItem('activeDatabase')
+                console.log(name)
+                sendToTerminal(`Active database set to: ${name}`)
+                return name
             }
 
             set activeDatabase(name) {

@@ -84,8 +84,8 @@
     </material-grid>
 
     <material-card title="Info" outlined>
-        <div>
-            <pre id="terminalBox">
+        <div id="terminalBox">
+            <pre>
                 This window may be closed. The Server process will still run
             </pre>
         </div>
@@ -115,9 +115,21 @@
             db.statusCheck()
         }
 
+        /** 
+          * Will be removed
+          */
         function setTerminalBox(message) {
+            sendToTerminal(message)
+        }
+
+        /**
+         * Prints a string to info container
+         */
+        function sendToTerminal(message) {
             let box = document.querySelector('#terminalBox');
-            box.innerText = message;
+            let pre = document.createElement('pre')
+            pre.innerText = message
+            box.prepend(pre)
         }
 
         //document.querySelector('#dbLink').href = db.url;
