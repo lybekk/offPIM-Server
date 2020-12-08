@@ -13,7 +13,7 @@ const offPIMServerConfig = require('./config.json')
 
 const listeningPortoffPIMUI = 3001;
 const listeningPortPouchDBServer = 3000;
-const configuredBindAddress = '127.0.0.1';
+const configuredBindAddress = '0.0.0.0';
 const appURLBase = 'http://localhost:';
 
 /*
